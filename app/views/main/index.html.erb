@@ -1,0 +1,117 @@
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item">Здесь будут кнопки
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">
+          <%= link_to 'Sign In', new_user_path, class: 'btn btn-primary' %> <em>link_to 'Sign In', new_user_path, class: 'btn btn-primary'</em>
+        </li>
+        <li class="list-group-item">
+          <%= link_to 'Log In', new_session_path, class: 'btn btn-primary' %> <em>link_to 'Log In', new_session_path, class: 'btn btn-primary'</em>
+        </li>
+        <li class="list-group-item">
+          <%= link_to 'Log out', session_path, data: { turbo_method: :delete}, class: 'btn btn-primary' %> <em>link_to 'Log out', session_path, data: { turbo_method: :delete}, class: 'btn btn-primary'</em>
+        </li>
+        <li class="list-group-item">
+          <% if current_user.present? %>
+            <%= link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary' %> <em>link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary'</em>
+          <% else %>
+            <p>Заглушка если пользользователя нет в сессии</p>
+          <% end %>
+        </li>
+      </ol>
+    </li>
+    <li class="list-group-item">Здесь будут данные о пользователе вошедшем в систему
+      <ul class="list-group">
+          <ol class="list-group list-group-numbered">
+            <li class="list-group-item">
+              <%= current_user.inspect %>
+            </li>
+          </ol>
+      </ul>
+    </li>
+    <li class="list-group-item">Что делаем по порядку:
+      <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Создаем контроллер для пользователя и модель пользователя с полями
+            email, name, password_digest. Password_digest с bcrypt создаст в модели пользователя виртуальные поля
+            password и password_confirmation.</li>
+            <li class="list-group-item">Для модели пользователя прописываем has_secure_password</li>
+            <li class="list-group-item">Делаем валидации на уровне БД: <em>t.string :email, null: false, index: { unique: true }</em>
+            и валидацию email в модели пользователя <em>validates :email, presence: true, uniqueness: true</em>.
+            Для поля имя можно не делать проверку на наличие, потом напишем код который будет выбирать имя если оно есть, а если нет
+            то будет отрезать часть от почты и возвращать это значение.</li>
+            <li class="list-group-item"> Создаем методы new и create в контроллере пользователя.
+            </li>
+            <li class="list-group-item"> Создаем форму для регистрации пользователя используя <em>form_with model: @user</em>
+              в файле views/users/_form.html.erb.
+            </li>
+            <li class="list-group-item">
+              создаем 2 метода: <em>current_user</em> возвращающий текущего пользователя если он есть в сесиии
+              и <em>user_signed_in?</em> который проверяет есть ли данные пользователя в сессии, а так же делаем их хелперами,
+              для того что бы они были доступны не только в контроллерах, но и в представлениях. Эти 2 метода выносим в отдельный консерн
+              и подключаем к application_controller. ВАЖНО: имя модуля в консерне должно соответствовать названию файла консерна!!!1
+            </li>
+            <li class="list-group-item">
+              Декораторы! <br>
+              Декораторы используются для того что бы добавлять к существующим объектам какие-то дополнительные методы и эти
+              методы включают в себя логику связанную с отображением этого объекта.<br>
+              Для добавления декораторов устанавливаем <em>gem 'draper'</em><br>
+              Генерируем новый базовый декоратор: <em>rails g draper:install</em> и декоратор для пользователя <em>rails g decorator User</em><br>
+              В декораторе user создаем метод name_or_email
+            </li>
+            <li class="list-group-item">
+              Сессии!<br>
+              Создаем маршрут для сесии.<br>
+              создаем контроллер сесии и в нем описываем методы new, create, destroy<br>
+              В методе create пишем:<br>
+              <pre>
+                <code>
+                  # Находим пользователя по почте из парамс
+                  user = User.find_by(email: params[:email])
+                  # Пытаемся залогиниться используя метод authenticate. Для того что бы метод не применялся к nil (может быть
+                  # когда пользователь будет не найден) используем user& что автоматически превратит условие в false
+                  if user&.authenticate(params[:password])
+                    # вызываем метод sign_in объявленный в консерне authentication
+                    sign_in user
+                    flash[:success] = "Welcome back, #{current_user.name_or_email}!"
+                    redirect_to root_path
+                  else
+                    flash.now[:warning] = 'Incorrect email or password'
+                    redirect_to new_session_path
+                  end
+                </code>
+              </pre>
+            </li>
+
+        <li class="list-group-item">
+          Выпадающий список в меню!<br>
+          Для того что бы создать выпадающий список устанавливаем popperjs <em>yarn add @popperjs/core</em><br>
+          И дальше это дерьмо не работает!!!!!
+        </li>
+        <li class="list-group-item">
+          Дополнительно создаем 2 метода: <em>require_no_authentication</em> и <em>require_user_authentication</em> которые
+          будут проверять есть ли в сессии пользователь или нет. Эти методы будут выполняться с ключем before_action что бы
+          разрешать пользователю или нет логиниться, выходить или регистрироваться на сайте в зависимости от того вошел ли
+          он в сессию или нет. Код этих методов выносим в консерн authentication.
+        </li>
+        <li class="list-group-item">
+          Создадим методы и страницу для редактирования данных пользователя.
+        </li>
+        <li class="list-group-item">
+          Для валидации паролей в консерне authenticate напишем методы проверки. См. -> authenticate
+        </li>
+        <li class="list-group-item">
+          Для проверки корректности почты используем valid_email2. читать README.MD на github
+        </li>
+        <li class="list-group-item">
+          ЗАПОМИНАНИЕ ПОЛЬЗОВАТЕЛЯ И КУКИ
+          <ol class="list-group list-group-numbered">
+            <li class="list-group-item">
+              добавляем к таблице БД пользователя новое поле - хеш специального токена с помощью которого и
+              будет запоминаться пользователь. По большому счету это аналог пароля.<br>
+              <em>rails g migration add_remember_token_digest_to_users remember_token_digest</em>
+            </li>
+          </ol>
+        </li>
+    </ol>
+  </ul>
+</div>
