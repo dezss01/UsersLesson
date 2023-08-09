@@ -1,0 +1,11 @@
+<div class="container">
+  <% @questions.each do |q| %>
+  <div class="card mt-3" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= q.title %></h5>
+        <p class="card-text"><%= q.body %></p>
+        <p class="card-text">Вопрос создан: <%= formatted_time(q.created_at) %></p>
+      </div>
+  </div>
+  <% end %>
+</div>

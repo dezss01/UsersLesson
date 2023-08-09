@@ -4,7 +4,13 @@
       <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li>
-            <%= nav_tab "Main page", root_path, class: "nav-link px-2" %>
+            <%= nav_tab "Home", root_path, class: "nav-link px-2" %>
+          </li>
+          <li>
+            <%= nav_tab "Questions", questions_path, class: "nav-link px-2" %>
+          </li>
+          <li>
+            <%= nav_tab "New Question", new_question_path, class: "nav-link px-2" %>
           </li>
         </ul>
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
