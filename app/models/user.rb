@@ -20,15 +20,13 @@ class User < ApplicationRecord
   validate :password_complexity
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
-  validates :name, presence: true
+
 
   # метод для запоминания пользователя. Генерирует токен на основе которого делается хеш.
   # Записывает данный токен в БД
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
-    # rubocop:disable Rails/SkipsModelValidations
     update_column :remember_token_digest, digest(remember_token)
-    # rubocop:enable Rails/SkipsModelValidations
   end
 
   # проверяет что тот токен который нам передается и тот токен который есть в БД одно и тоже
@@ -43,9 +41,7 @@ class User < ApplicationRecord
   # ставит значение remember_token_digest в БД в nil
   # и значение self.remember_token устанавливает в nil
   def forget_me
-    # rubocop:disable Rails/SkipsModelValidations
     update_column :remember_token_digest, nil
-    # rubocop:enable Rails/SkipsModelValidations
     self.remember_token = nil
   end
 

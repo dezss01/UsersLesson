@@ -1,0 +1,26 @@
+<%= provide :page_title, 'Show Question' %>
+<%= currently_at 'Show Question' %>
+<div class="container">
+    <div class="card mt-3 mb-3" style="width: 50rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= sanitize @question.title %></h5>
+        <div class="card-text"><%= sanitize @question.body %></div>
+        <div class="card-text mb-3">Вопрос создан: <%= formatted_time(@question.created_at) %></div>
+        <div class="container">
+          <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-primary' %>
+          <%= link_to 'Delete', question_path(@question),
+                      data: {turbo_method: :delete, confirmation: 'Are you shure?'},
+                      class: 'btn btn-danger' %>
+        </div>
+        <li class="card-header mt-3">Answers:</li>
+
+            <%= render partial: 'answers/answer', collection: @answers,
+                       as: :answer, locals: { question: @question } %>
+
+          <div class="card-body mt-0">
+            <%= render 'answers/form' %>
+          </div>
+    </div>
+    </div>
+  <%= link_to 'Back', questions_path, class: 'btn btn-primary' %>
+</div>

@@ -1,52 +1,54 @@
-<%= render 'shared/errors', object: @user %>
-<div class="row">
-  <div class="col-md-8 mx-auto">
-    <%= form_with model: @user, local: true, class: 'form-horizontal mt-3' do |f| %>
-      <div class="form-group">
-        <%= f.label :email, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
-          <%= f.email_field :email, class: 'form-control form-control-lg mb-3', placeholder: "email" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :name, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
-          <%= f.text_field :name, class: 'form-control form-control-lg mb-3', placeholder: "name" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
-          <%= f.password_field :password, class: 'form-control form-control-lg mb-3' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
-        <div class="col-sm-10">
-          <%= f.password_field :password_confirmation, class: 'form-control form-control-lg mb-3' %>
-        </div>
-      </div>
-
-      <% unless @user.new_record? %>
+<div class="container">
+  <%= render 'shared/errors', object: @user %>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= form_with model: @user, local: true, class: 'form-horizontal mt-3' do |f| %>
         <div class="form-group">
-          <%= f.label :old_password, class: 'col-sm-2 control-label' %>
+          <%= f.label :email, class: 'col-sm-2 control-label' %>
           <div class="col-sm-10">
-            <%= f.password_field :old_password, class: 'form-control form-control-lg' %>
+            <%= f.email_field :email, class: 'form-control form-control-lg mb-3', placeholder: "email" %>
           </div>
         </div>
-      <% end %>
 
-
-      <br>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit (@user.new_record? ? "Register" : "Save"), class: 'btn btn-primary btn-lg' %>
+        <div class="form-group">
+          <%= f.label :name, class: 'col-sm-2 control-label' %>
+          <div class="col-sm-10">
+            <%= f.text_field :name, class: 'form-control form-control-lg mb-3', placeholder: "name" %>
+          </div>
         </div>
-      </div>
 
-    <% end %>
+        <div class="form-group">
+          <%= f.label :password, class: 'col-sm-2 control-label' %>
+          <div class="col-sm-10">
+            <%= f.password_field :password, class: 'form-control form-control-lg mb-3' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
+          <div class="col-sm-10">
+            <%= f.password_field :password_confirmation, class: 'form-control form-control-lg mb-3' %>
+          </div>
+        </div>
+
+        <% unless @user.new_record? %>
+          <div class="form-group">
+            <%= f.label :old_password, class: 'col-sm-2 control-label' %>
+            <div class="col-sm-10">
+              <%= f.password_field :old_password, class: 'form-control form-control-lg' %>
+            </div>
+          </div>
+        <% end %>
+
+
+        <br>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit (@user.new_record? ? "Register" : "Save"), class: 'btn btn-primary btn-lg' %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
   </div>
 </div>

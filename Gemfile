@@ -40,7 +40,15 @@ gem 'jbuilder'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem 'bcrypt', '~> 3.1.7'
+
+gem 'caxlsx', '~> 3.4'
+gem 'caxlsx_rails', '~> 0.6.0'
 gem 'draper'
+gem 'faker', '~> 3.2.0'
+gem 'pagy', '~> 6.0.0'
+gem 'rubyXL', '~> 3.4'
+gem 'rubyzip', '~> 2.3.0'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
@@ -48,6 +56,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 gem 'valid_email2'
 
+gem 'activerecord-import'
+
+gem 'rails-i18n', '~> 7'
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -60,6 +71,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.55', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  gem 'pry-rails'
 end
 
 group :development do

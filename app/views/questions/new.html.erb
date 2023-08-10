@@ -1,17 +1,6 @@
+<%= provide :page_title, 'New Question' %>
+<%= currently_at 'New Question' %>
+
 <div class="container">
-  <%= params.inspect %>
-  <%= render 'shared/errors', object: @question %>
-  <%= form_with model: @question do |f| %>
-    <div class="mb-3">
-      <%= f.label :title, class: 'form-label' %>
-      <%= f.text_field :title, class: 'form-control' %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.label :body, class: 'form-label' %>
-      <%= f.text_area :body, class: 'form-control' %>
-    </div>
-
-    <%= f.submit 'Create', class: 'btn btn-primary'%>
-  <% end %>
+  <%= render 'form' %>
 </div>

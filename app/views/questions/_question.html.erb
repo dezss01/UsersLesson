@@ -1,0 +1,17 @@
+
+  <div class="card mt-3" style="width: 50rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= truncate strip_tags(question.title), length: 100,
+                                          omission: '... (continued)' %></h5>
+      <div class="card-text"><%= truncate strip_tags(question.body), length: 100,
+                                          omission: '... (continued)' %></div>
+      <div class="card-text mb-3">Вопрос создан: <%= formatted_time(question.created_at) %></div>
+      <div class="container">
+        <%= link_to 'Edit', edit_question_path(question.id), class: 'btn btn-primary' %>
+        <%= link_to 'Show', question_path(question.id), class: 'btn btn-primary' %>
+        <%= link_to 'Delete', question_path(question.id),
+                    data: {turbo_method: :delete, confirmation: 'Are you shure?'},
+                    class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>

@@ -17,8 +17,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the app, #{current_user.name_or_email}!"
       redirect_to root_path
     else
-      flash[:warning] = 'You cant sign in'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,8 +26,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Profile was update!'
       redirect_to root_path
     else
-      flash[:warning] = 'Profile cant update!'
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -1,25 +1,36 @@
-<div class="container">
+<%= provide :page_title %>
+<%= currently_at t('menu.home') %>
+
+<div class="container mt-3">
   <ul class="list-group">
-    <li class="list-group-item">Здесь будут кнопки
+    <li class="list-group-item">Здесь б удут кнопки
       <ol class="list-group list-group-numbered">
         <li class="list-group-item">
           <%= link_to 'Sign In', new_user_path, class: 'btn btn-primary' %> <em>link_to 'Sign In', new_user_path, class: 'btn btn-primary'</em>
         </li>
         <li class="list-group-item">
-          <%= link_to 'Log In', new_session_path, class: 'btn btn-primary' %> <em>link_to 'Log In', new_session_path, class: 'btn btn-primary'</em>
+          <%= link_to 'Log In', new_session_path, class: 'btn btn-primary' %>
+          <em>link_to 'Log In', new_session_path, class: 'btn btn-primary'</em>
         </li>
         <li class="list-group-item">
-          <%= link_to 'Log out', session_path, data: { turbo_method: :delete}, class: 'btn btn-primary' %> <em>link_to 'Log out', session_path, data: { turbo_method: :delete}, class: 'btn btn-primary'</em>
+          <%= link_to 'Log out', session_path, data: { turbo_method: :delete}, class: 'btn btn-primary' %>
+          <em>link_to 'Log out', session_path, data: { turbo_method: :delete}, class: 'btn btn-primary'</em>
         </li>
         <li class="list-group-item">
           <% if current_user.present? %>
-            <%= link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary' %> <em>link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary'</em>
+            <%= link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary' %>
+            <em>link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary'</em>
           <% else %>
             <p>Заглушка если пользользователя нет в сессии</p>
           <% end %>
         </li>
         <li class="list-group-item">
-          <%= link_to 'Questions', questions_path, class: 'btn btn-primary' %> <em> link_to 'Questions', questions_path, class: 'btn btn-primary'</em>
+          <%= link_to 'Questions', questions_path, class: 'btn btn-primary' %>
+          <em> link_to 'Questions', questions_path, class: 'btn btn-primary'</em>
+        </li>
+        <li class="list-group-item">
+          <%= link_to 'Admin', admin_users_path, class: 'btn btn-primary' %>
+          <em> link_to 'Admin', admin_users_path, class: 'btn btn-primary'</em>
         </li>
       </ol>
     </li>

@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       do_sign_in user
     else
-      flash.now[:warning] = 'Incorrect email or password'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
