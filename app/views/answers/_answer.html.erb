@@ -2,11 +2,11 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item" id="answer-<%= answer.id %>">
       <%= answer.body %><br>
-      <%= formatted_time(answer.created_at) %><br>
+      <%= formatted_time(answer) %><br>
 
-      <%= link_to 'Edit', edit_question_answer_path(question, answer),
+      <%= link_to t('answer_form.edit'), edit_question_answer_path(question, answer),
                   class: 'btn btn-primary btn-sm mt-2 mb-2' %>
-      <%= link_to 'Delete', question_answer_path(question, answer),
+      <%= link_to t('answer_form.delete'), question_answer_path(question, answer),
                   data: { turbo_method: :delete },
                   class: 'btn btn-danger btn-sm mt-2 mb-2' %>
     </li>

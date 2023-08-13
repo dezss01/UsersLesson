@@ -1,3 +1,20 @@
 ru:
   menu:
-    home: 'Главна я'
+    home: 'Главная'
+    questions: 'Вопросы'
+    new_question: 'Новый вопрос'
+    lessons: 'Уроки'
+  question_form:
+    create: 'Создать'
+    title: 'Тема'
+    body: 'Вопрос'
+    edit: 'Редактировать'
+    show: 'Показать'
+    delete: 'Удалить'
+    back: 'Назад'
+  answer_form:
+    create: 'Создать'
+    body: 'Ответ'
+    edit: 'Редактировать'
+    show: 'Показать'
+    delete: 'Удалить'

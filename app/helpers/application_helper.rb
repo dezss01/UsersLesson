@@ -36,7 +36,13 @@ module ApplicationHelper
     end
   end
 
-  # def pagination(obj)
-  #   raw(pagy_bootstrap_nav(obj)) if obj.pages > 1
-  # end
+  # форматирует время created_at под локаль
+  # принимает объект ActiveRecord
+  def formatted_time(obj)
+    l obj.created_at, format: :long
+  end
+
+  def pagination(obj)
+    raw(pagy_bootstrap_nav(obj)) if obj.pages > 1
+  end
 end

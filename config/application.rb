@@ -24,8 +24,8 @@ module AskItESBuild
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    config.i18n.avalible_locales = %i[ru en]
-    config.i18n.default_locale = :en
+    config.i18n.available_locales = %i[ru en]
+    config.i18n.default_locale = :ru
 
     # Configuration for the application, engines, and railties goes here.
     #

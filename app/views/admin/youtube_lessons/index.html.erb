@@ -1,0 +1,43 @@
+<%= provide :page_title %>
+<% currently_at 'Youtube Lessons' %>
+<div class="container">
+  <h1 class="mb-4">Admin Youtube Lessons</h1>
+
+  <div class="btn-group mb-3">
+    <%= link_to 'Download Zipped XLSX', admin_youtube_lessons_path(format: :zip), class: 'btn btn-secondary' %>
+  </div>
+
+  <%== pagy_bootstrap_nav @pagy %>
+
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Number</th>
+      <th scope="col">Name</th>
+      <th scope="col">Link</th>
+      <th scope="col">Description</th>
+      <th scope="col">Created at</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render @youtube_lessons %>
+    </tbody>
+  </table>
+  <%== pagy_bootstrap_nav @pagy %>
+
+
+  <h2 class="mb-3">Upload video link from XLSX</h2>
+  <%= form_with url: admin_youtube_lessons_path do |f| %>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :archive, 'Select archive' %>
+      </div>
+      <div class="col-sm-2 col-form-label">
+        <%= f.file_field :archive, class: 'form-control' %>
+      </div>
+      <div class="col-sm-2 mt-2">
+        <%= f.submit 'Upload!', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

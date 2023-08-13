@@ -9,5 +9,5 @@
         <%= f.text_area :body, class: 'form-control form-control-lg mb-3 card-text', required: true %>
       </div>
     </div>
-    <%= f.submit (@answer.new_record? ? "Create" : "Edit"), class: 'btn btn-primary' %>
+    <%= f.submit (@answer.new_record? ? t('answer_form.create') : t('answer_form.edit')), class: 'btn btn-primary' %>
   <% end %>

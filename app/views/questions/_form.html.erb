@@ -11,6 +11,6 @@
       <%= f.text_area :body, class: 'form-control' %>
     </div>
 
-    <%= f.submit (@question.new_record? ? "Create" : "Edit"), class: 'btn btn-primary'%>
+    <%= f.submit (@question.new_record? ? t('question_form.create') : t('question_form.edit')), class: 'btn btn-primary'%>
   <% end %>
 </div>

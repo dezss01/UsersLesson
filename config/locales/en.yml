@@ -1,3 +1,20 @@
  en:
   menu:
     home: 'Home'
+    questions: 'Questions'
+    new_question: 'New Question'
+    lessons: 'Lessons'
+  question_form:
+    create: 'Create'
+    title: 'Title'
+    body: 'Body'
+    edit: 'Edit'
+    show: 'Show'
+    delete: 'Delete'
+    back: 'Back'
+  answer_form:
+    create: 'Create'
+    body: 'Body'
+    edit: 'Edit'
+    update: 'Update'
+    delete: 'Delete'
