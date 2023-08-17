@@ -6,7 +6,7 @@
 
 require 'pagy/extras/bootstrap'
 
-# Pagy DEFAULT Variables 
+# Pagy DEFAULT Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#variables
 # All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
@@ -241,7 +241,7 @@ require 'pagy/extras/bootstrap'
 # I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
 # than the default pagy internal i18n (see above)
 # See https://ddnexus.github.io/pagy/docs/extras/i18n
-# require 'pagy/extras/i18n'
+require 'pagy/extras/i18n'
 
 # Default i18n key
 # Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'   # default

@@ -4,6 +4,11 @@ class User < ApplicationRecord
   # создает виртуальный атрибут :old_password и :remember_token
   attr_accessor :old_password, :remember_token
 
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+
+  before_save :set_gravatar_hash, if: :email_changed?
+
   has_secure_password validations: false
 
   # валидация на то что пароль должен быть подтвержден и пароль можно оставить пустым (allow_blank:)
@@ -46,6 +51,15 @@ class User < ApplicationRecord
   end
 
   private
+
+  # метод присваивает хеш email'a пользователю когда почта изменилась
+  def set_gravatar_hash
+    return unless email.present?
+
+    hash = Digest::MD5.hexdigest email.strip.downcase
+    self.gravatar_hash = hash
+  end
+
 
   # метод генерирует хеш на основе строки переданной в параметрах метода
   # честно спизжен из видосов, а в видосе тоже от куда-то спизжен

@@ -1,4 +1,14 @@
 ru:
+  en: Английский
+  ru: Русский
+  activerecord:
+    models:
+      question: Вопрос
+      answer: Ответ
+    attributes:
+      question:
+        title: 'Заголовок'
+        body: 'Текст'
   menu:
     home: 'Главная'
     questions: 'Вопросы'
@@ -12,9 +22,13 @@ ru:
     show: 'Показать'
     delete: 'Удалить'
     back: 'Назад'
+    created_date: 'Вопрос создан: '
   answer_form:
     create: 'Создать'
     body: 'Ответ'
     edit: 'Редактировать'
     show: 'Показать'
     delete: 'Удалить'
+  text:
+    answers: 'Ответы'
+    put_answer: 'Напишите свой ответ здесь:'

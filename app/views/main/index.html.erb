@@ -131,6 +131,63 @@
             </li>
           </ol>
         </li>
+        <li class="list-group-item">
+          СВЯЗЬ ПОЛЬЗОВАТЕЛЯ С ВОПРОСАМИ И ОТВЕТАМИ
+          <ol class="list-group list-group-numbered">
+            <li class="list-group-item">
+              Генерируем миграцию <em>rails g migration add_user_id_to_answers user:belongs_to</em> которая создаст
+              в answers поле user_id для осуществления связи между пользователем и ответами
+            </li>
+            <li class="list-group-item">
+              Генерируем миграцию <em>rails g migration add_user_id_to_questions user:belongs_to</em> которая создаст
+              в question поле user_id для осуществления связи между пользователем и вопросами
+            </li>
+            <li class="list-group-item">
+              При применении миграций из-за того что установлено <em>null: false</em> миграция будет с ошибками, т.к.
+              в приложении уже есть вопросы и ответы. Что бы этого избежать добавляем в миграции <em>default: User.first.id </em>
+            </li>
+            <li class="list-group-item">
+              После применения миграции создаем новую миграцию для того чтобы изменить значение user_id
+              <em>rails g migration remove_default_user_id_from_questions_answers</em> и в этой миграции прописываем 2 метода: up и down.
+              Метод up применяется когда миграция применяется, а метод down - когда миграция откатывается.<br>
+              В метод up прописываем <em>change_column_default :questions, :user_id, from: User.first.id, to: nil</em>
+              и <em>change_column_default :answers, :user_id, from: User.first.id, to: nil</em>.<br>
+              В метод down прописываем <em>change_column_default :questions, :user_id, from: nil, to: User.first.id</em>
+              и <em>change_column_default :answers, :user_id, from: nil, to: User.first.id</em>.<br>
+              После этого применяем миграции.
+            </li>
+
+          </ol>
+        </li>
+
+        <li class="list-group-item">
+          ГРАВАТАР
+          <ol class="list-group list-group-numbered">
+            <li class="list-group-item">
+              Для подключения граватара в декораторе пользователя добавляем метод gravatar
+            </li>
+            <li class="list-group-item">
+              Для того что бы каждый раз не генерировать хеш по почте создадим миграцию
+              <em>rails g migration add_gravatar_hash_to_users gravatar_hash</em>
+            </li>
+            <li class="list-group-item">
+              Хеш граватар мы будем записывать в Users при создании нового пользователя и при смене почты<br>
+              Для того что бы это сделать в модели User пишем следующее: <br>
+              <pre>
+                <code>
+                  before_save :set_gravatar_hash, if: email_changed?
+                  private
+                  def set_gravatar_hash
+                    return unless email.present?
+
+                    hash = Digest::MD5.hexdigest email.strip.downcase
+                    self.gravatar_hash = hash
+                  end
+                </code>
+              </pre>
+            </li>
+          </ol>
+        </li>
     </ol>
 
   </ul>

@@ -1,4 +1,14 @@
- en:
+en:
+  en: English
+  ru: Russian
+  activerecord:
+    models:
+      question: Question
+      answer: Answer
+    attributes:
+      question:
+        title: 'Title'
+        body: 'Body'
   menu:
     home: 'Home'
     questions: 'Questions'
@@ -12,9 +22,13 @@
     show: 'Show'
     delete: 'Delete'
     back: 'Back'
+    created_date: 'Question created at'
   answer_form:
     create: 'Create'
     body: 'Body'
     edit: 'Edit'
     update: 'Update'
     delete: 'Delete'
+  text:
+    answers: 'Answers'
+    put_answer: 'Put your answer here:'

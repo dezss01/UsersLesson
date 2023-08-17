@@ -5,11 +5,6 @@
   <h4 class="mb-3">Log In</h4>
 
   <div class="container">
-    <% if flash[:warning] %>
-      <div class="alert alert-warning">
-        <%= flash[:warning] %>
-      </div>
-    <% end %>
     <%= form_with url: session_path do |f| %>
       <div class="mb-3 row">
         <div class="col-sm-2 col-form-label">

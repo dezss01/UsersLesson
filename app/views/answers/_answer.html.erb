@@ -1,6 +1,8 @@
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item" id="answer-<%= answer.id %>">
+      <%= answer.user.decorate.gravatar %>
+      <%= answer.user.decorate.name_or_email %><br>
       <%= answer.body %><br>
       <%= formatted_time(answer) %><br>
 
