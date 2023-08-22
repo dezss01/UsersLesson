@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user&.authenticate(params[:password])
-      do_sign_in user
+    @user = User.find_by(email: params[:email])
+    if @user&.authenticate(params[:password])
+      do_sign_in @user
     else
       flash.now[:warning] = "Wrong email and/or password!"
       render :new, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
   def do_sign_in(user)
     sign_in user
     remember(user) if params[:remember_me] == '1'
-    flash[:success] = "Welcome back, #{current_user.name_or_email}!"
+    flash[:success] = flash[:success] = t('.success', name: current_user.name_or_email)
     redirect_to root_path
   end
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
+  include QuestionsAnswers
+
   before_action :set_question!, only: %i[edit update show destroy]
 
   def index
@@ -13,6 +15,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    # Для текущего пользователя построить вопрос с параметрами из question_params
     @question = current_user.questions.build question_params
     if @question.save
       flash[:success] = 'You create a new question'
@@ -35,10 +38,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = @question.decorate
-    @answer = @question.answers.build
-    # @user = User.find(@answer.user_id)
-    @pagy, @answers = pagy @question.answers.order created_at: :desc
+    load_question_answers(do_render: false)
   end
 
   def destroy

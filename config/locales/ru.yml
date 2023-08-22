@@ -14,6 +14,7 @@ ru:
     questions: 'Вопросы'
     new_question: 'Новый вопрос'
     lessons: 'Уроки'
+    admin_users: 'Админ_Пользователи'
   question_form:
     create: 'Создать'
     title: 'Тема'
@@ -32,3 +33,6 @@ ru:
   text:
     answers: 'Ответы'
     put_answer: 'Напишите свой ответ здесь:'
+  sessions:
+    create:
+      success: "Добро пожаловать"

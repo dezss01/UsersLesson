@@ -189,6 +189,15 @@
           </ol>
         </li>
     </ol>
-
+    <li class="list-group-item">
+      Полиморфические отношения или создание комментариев
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">
+          В консоли генерируем модель командой
+          <em>rails g model Comment body commentable:references{polymorphic} user:belongs_to</em><br>
+          После генерации модели делаем миграцию<br>
+          В миграции создаются 2 поля
+        </li>
+      </ol>
   </ul>
 </div>
