@@ -28,7 +28,7 @@
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
           <li class="dropdown">
             <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
-                        data: {"bs-toggle": 'dropdown'} do %>
+                        data: {"bs-toggle": 'dropdown', "aria-haspopup": true, "aria-expanded": false} do %>
               <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
               <%= t I18n.locale %>
             <% end %>

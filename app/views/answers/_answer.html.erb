@@ -14,3 +14,8 @@
     </li>
     <li class="list-group-item"></li>
   </ul>
+  <%= render 'comments/commentable',
+             commentable: answer,
+             comment: @comment,
+             html_id: dom_id(answer, 'comment_form')
+  %>

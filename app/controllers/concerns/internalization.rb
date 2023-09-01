@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Internalization
   extend ActiveSupport::Concern
 
@@ -44,7 +46,7 @@ module Internalization
         quality = quality ? quality.to_f : 1.0
         [locale, quality]
       end.reject do |(locale, quality)|
-        locale == '*' || quality == 0
+        locale == '*' || quality.zero?
       end.sort_by do |(_, quality)|
         quality
       end.map(&:first)
@@ -53,16 +55,14 @@ module Internalization
 
       if I18n.enforce_available_locales
         locale = locales.reverse.find { |locale| I18n.available_locales.any? { |al| match?(al, locale) } }
-        if locale
-          I18n.available_locales.find { |al| match?(al, locale) }
-        end
+        I18n.available_locales.find { |al| match?(al, locale) } if locale
       else
         locales.last
       end
     end
 
     def match?(s1, s2)
-      s1.to_s.casecmp(s2.to_s) == 0
+      s1.to_s.casecmp(s2.to_s).zero?
     end
   end
 end

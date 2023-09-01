@@ -46,6 +46,7 @@ gem 'caxlsx_rails', '~> 0.6.0'
 gem 'draper'
 gem 'faker', '~> 3.2.0'
 gem 'pagy', '~> 6.0.0'
+gem 'popper_js'
 gem 'rubyXL', '~> 3.4'
 gem 'rubyzip', '~> 2.3.0'
 
@@ -68,14 +69,15 @@ gem 'rails-i18n', '~> 7'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-rails'
   gem 'rubocop', '~> 1.55', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'pry-rails'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'bullet'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

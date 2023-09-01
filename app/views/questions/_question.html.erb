@@ -10,6 +10,9 @@
       <div class="card-text"><%= truncate strip_tags(question.body), length: 100,
                                           omission: '... (continued)' %></div>
       <div class="card-text mb-3">Вопрос создан: <%= formatted_time(question) %></div>
+      <div class="my-2">
+        <%= render question.tags %>
+      </div>
       <div class="container">
         <%= link_to t('question_form.edit'), edit_question_path(question.id), class: 'btn btn-primary' %>
         <%= link_to t('question_form.show'), question_path(question.id), class: 'btn btn-primary' %>

@@ -2,37 +2,49 @@ do /Users/sergejspasskij/.rvm/rubies/ruby-3.2.0/bin/ruby -x /Users/sergejspasski
 Ruby enVironment Manager 1.29.12 (latest) (c) 2009-2020 Michal Papis, Piotr Kuczynski, Wayne E. Seguin
 
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
-                                    root GET    /                                                                                                 main#index
-                                   users POST   /users(.:format)                                                                                  users#create
-                                new_user GET    /users/new(.:format)                                                                              users#new
-                               edit_user GET    /users/:id/edit(.:format)                                                                         users#edit
-                                    user PATCH  /users/:id(.:format)                                                                              users#update
-                                         PUT    /users/:id(.:format)                                                                              users#update
-                         youtube_lessons GET    /youtube_lessons(.:format)                                                                        youtube_lessons#index
-                          youtube_lesson GET    /youtube_lessons/:id(.:format)                                                                    youtube_lessons#show
-                             new_session GET    /session/new(.:format)                                                                            sessions#new
-                                 session DELETE /session(.:format)                                                                                sessions#destroy
-                                         POST   /session(.:format)                                                                                sessions#create
-                        question_answers GET    /questions/:question_id/answers(.:format)                                                         answers#index
-                                         POST   /questions/:question_id/answers(.:format)                                                         answers#create
-                     new_question_answer GET    /questions/:question_id/answers/new(.:format)                                                     answers#new
-                    edit_question_answer GET    /questions/:question_id/answers/:id/edit(.:format)                                                answers#edit
-                         question_answer GET    /questions/:question_id/answers/:id(.:format)                                                     answers#show
-                                         PATCH  /questions/:question_id/answers/:id(.:format)                                                     answers#update
-                                         PUT    /questions/:question_id/answers/:id(.:format)                                                     answers#update
-                                         DELETE /questions/:question_id/answers/:id(.:format)                                                     answers#destroy
-                               questions GET    /questions(.:format)                                                                              questions#index
-                                         POST   /questions(.:format)                                                                              questions#create
-                            new_question GET    /questions/new(.:format)                                                                          questions#new
-                           edit_question GET    /questions/:id/edit(.:format)                                                                     questions#edit
-                                question GET    /questions/:id(.:format)                                                                          questions#show
-                                         PATCH  /questions/:id(.:format)                                                                          questions#update
-                                         PUT    /questions/:id(.:format)                                                                          questions#update
-                                         DELETE /questions/:id(.:format)                                                                          questions#destroy
-                             admin_users GET    /admin/users(.:format)                                                                            admin/users#index
-                                         POST   /admin/users(.:format)                                                                            admin/users#create
-                   admin_youtube_lessons GET    /admin/youtube_lessons(.:format)                                                                  admin/youtube_lessons#index
-                                         POST   /admin/youtube_lessons(.:format)                                                                  admin/youtube_lessons#create
+                                    root GET    /(:locale)(.:format)                                                                              main#index {:locale=>/ru|en/}
+                                   users POST   (/:locale)/users(.:format)                                                                        users#create {:locale=>/ru|en/}
+                                new_user GET    (/:locale)/users/new(.:format)                                                                    users#new {:locale=>/ru|en/}
+                               edit_user GET    (/:locale)/users/:id/edit(.:format)                                                               users#edit {:locale=>/ru|en/}
+                                    user PATCH  (/:locale)/users/:id(.:format)                                                                    users#update {:locale=>/ru|en/}
+                                         PUT    (/:locale)/users/:id(.:format)                                                                    users#update {:locale=>/ru|en/}
+                         youtube_lessons GET    (/:locale)/youtube_lessons(.:format)                                                              youtube_lessons#index {:locale=>/ru|en/}
+                          youtube_lesson GET    (/:locale)/youtube_lessons/:id(.:format)                                                          youtube_lessons#show {:locale=>/ru|en/}
+                             new_session GET    (/:locale)/session/new(.:format)                                                                  sessions#new {:locale=>/ru|en/}
+                                 session DELETE (/:locale)/session(.:format)                                                                      sessions#destroy {:locale=>/ru|en/}
+                                         POST   (/:locale)/session(.:format)                                                                      sessions#create {:locale=>/ru|en/}
+                       question_comments POST   (/:locale)/questions/:question_id/comments(.:format)                                              comments#create {:locale=>/ru|en/}
+                        question_comment DELETE (/:locale)/questions/:question_id/comments/:id(.:format)                                          comments#destroy {:locale=>/ru|en/}
+                        question_answers GET    (/:locale)/questions/:question_id/answers(.:format)                                               answers#index {:locale=>/ru|en/}
+                                         POST   (/:locale)/questions/:question_id/answers(.:format)                                               answers#create {:locale=>/ru|en/}
+                     new_question_answer GET    (/:locale)/questions/:question_id/answers/new(.:format)                                           answers#new {:locale=>/ru|en/}
+                    edit_question_answer GET    (/:locale)/questions/:question_id/answers/:id/edit(.:format)                                      answers#edit {:locale=>/ru|en/}
+                         question_answer GET    (/:locale)/questions/:question_id/answers/:id(.:format)                                           answers#show {:locale=>/ru|en/}
+                                         PATCH  (/:locale)/questions/:question_id/answers/:id(.:format)                                           answers#update {:locale=>/ru|en/}
+                                         PUT    (/:locale)/questions/:question_id/answers/:id(.:format)                                           answers#update {:locale=>/ru|en/}
+                                         DELETE (/:locale)/questions/:question_id/answers/:id(.:format)                                           answers#destroy {:locale=>/ru|en/}
+                               questions GET    (/:locale)/questions(.:format)                                                                    questions#index {:locale=>/ru|en/}
+                                         POST   (/:locale)/questions(.:format)                                                                    questions#create {:locale=>/ru|en/}
+                            new_question GET    (/:locale)/questions/new(.:format)                                                                questions#new {:locale=>/ru|en/}
+                           edit_question GET    (/:locale)/questions/:id/edit(.:format)                                                           questions#edit {:locale=>/ru|en/}
+                                question GET    (/:locale)/questions/:id(.:format)                                                                questions#show {:locale=>/ru|en/}
+                                         PATCH  (/:locale)/questions/:id(.:format)                                                                questions#update {:locale=>/ru|en/}
+                                         PUT    (/:locale)/questions/:id(.:format)                                                                questions#update {:locale=>/ru|en/}
+                                         DELETE (/:locale)/questions/:id(.:format)                                                                questions#destroy {:locale=>/ru|en/}
+                         answer_comments POST   (/:locale)/answers/:answer_id/comments(.:format)                                                  comments#create {:locale=>/ru|en/}
+                          answer_comment DELETE (/:locale)/answers/:answer_id/comments/:id(.:format)                                              comments#destroy {:locale=>/ru|en/}
+                                 answers GET    (/:locale)/answers(.:format)                                                                      answers#index {:locale=>/ru|en/}
+                                         POST   (/:locale)/answers(.:format)                                                                      answers#create {:locale=>/ru|en/}
+                              new_answer GET    (/:locale)/answers/new(.:format)                                                                  answers#new {:locale=>/ru|en/}
+                             edit_answer GET    (/:locale)/answers/:id/edit(.:format)                                                             answers#edit {:locale=>/ru|en/}
+                                  answer GET    (/:locale)/answers/:id(.:format)                                                                  answers#show {:locale=>/ru|en/}
+                                         PATCH  (/:locale)/answers/:id(.:format)                                                                  answers#update {:locale=>/ru|en/}
+                                         PUT    (/:locale)/answers/:id(.:format)                                                                  answers#update {:locale=>/ru|en/}
+                                         DELETE (/:locale)/answers/:id(.:format)                                                                  answers#destroy {:locale=>/ru|en/}
+                             admin_users GET    (/:locale)/admin/users(.:format)                                                                  admin/users#index {:locale=>/ru|en/}
+                                         POST   (/:locale)/admin/users(.:format)                                                                  admin/users#create {:locale=>/ru|en/}
+                   admin_youtube_lessons GET    (/:locale)/admin/youtube_lessons(.:format)                                                        admin/youtube_lessons#index {:locale=>/ru|en/}
+                                         POST   (/:locale)/admin/youtube_lessons(.:format)                                                        admin/youtube_lessons#create {:locale=>/ru|en/}
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh

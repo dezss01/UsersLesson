@@ -11,6 +11,14 @@
       <%= f.text_area :body, class: 'form-control' %>
     </div>
 
+    <div class="mb-3 mt-3">
+      <%= f.label :tags, class: 'form-label' %>
+      <%= f.collection_select :tag_ids, tags, :id, :title, {},
+                              multiple: true, class: 'form-control',
+                              class: 'js-multiple-select w-100' %>
+    </div>
+
+
     <%= f.submit (@question.new_record? ? t('question_form.create') : t('question_form.edit')), class: 'btn btn-primary'%>
   <% end %>
 </div>

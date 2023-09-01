@@ -1,4 +1,4 @@
-<% if object.errors.any? %>
+<% if object&.errors&.full_messages&.any? %>
   <div class="alert alert-danger mb-5 mt-5">
     <h4><%= pluralize(object.errors.count, "error") %> prohibited this user from being saved:</h4>
     <ul>

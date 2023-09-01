@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class YoutubeLessonDecorator < ApplicationDecorator
   delegate_all
 
@@ -7,5 +9,4 @@ class YoutubeLessonDecorator < ApplicationDecorator
   def formatted_time(obj)
     l obj.created_at, format: :long
   end
-
 end

@@ -1,10 +1,10 @@
 ru:
-  en: Английский
-  ru: Русский
+  en: 'Английский'
+  ru: 'Русский'
   activerecord:
     models:
-      question: Вопрос
-      answer: Ответ
+      question: 'Вопрос'
+      answer: 'Ответ'
     attributes:
       question:
         title: 'Заголовок'
@@ -20,10 +20,15 @@ ru:
     title: 'Тема'
     body: 'Вопрос'
     edit: 'Редактировать'
-    show: 'Показать'
+    show: "Показать"
+    comments: 'Комментарии'
     delete: 'Удалить'
     back: 'Назад'
     created_date: 'Вопрос создан: '
+  comments:
+    create:
+      success: 'Комментарий успешно добавлен'
+      warning: 'Ой вэй, ошибочка(('
   answer_form:
     create: 'Создать'
     body: 'Ответ'
@@ -36,3 +41,18 @@ ru:
   sessions:
     create:
       success: "Добро пожаловать"
+  global:
+    button:
+      submit: "Создать"
+      delete: "Удалить"
+    dialog:
+      you_sure: "Вы уверены?"
+  questions:
+    question:
+      global:
+        text:
+          omission: "123"
+    index:
+      search_by_tags: "Поиск по тегам"
+      button:
+        submit: "Отправить"

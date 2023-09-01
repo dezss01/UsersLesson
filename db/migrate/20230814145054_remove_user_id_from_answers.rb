@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveUserIdFromAnswers < ActiveRecord::Migration[7.0]
   def change
     remove_column :answers, :user_id

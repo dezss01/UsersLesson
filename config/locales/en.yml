@@ -20,10 +20,16 @@ en:
     title: 'Title'
     body: 'Body'
     edit: 'Edit'
-    show: 'Show'
+    show:
+      comments: "Show"
     delete: 'Delete'
     back: 'Back'
     created_date: 'Question created at'
+    comments: "Comments"
+  comment:
+    create:
+      success: 'Comment created!'
+      warning: 'Comment was not created!'
   answer_form:
     create: 'Create'
     body: 'Body'
@@ -33,3 +39,18 @@ en:
   text:
     answers: 'Answers'
     put_answer: 'Put your answer here:'
+  global:
+    button:
+      submit: "Create"
+      delete: "Delete"
+    dialog:
+      you_sure: "Are you shure?"
+  questions:
+    question:
+      global:
+        text:
+          omission: "321"
+    index:
+      search_by_tags: "search by tags"
+      button:
+        submit: "Submit"

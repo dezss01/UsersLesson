@@ -6,6 +6,25 @@
     <%== pagy_bootstrap_nav @pagy %>
   </div>
 
+  <section class="mb-5">
+    <h2><%= t('.search_by_tags') %></h2>
+
+    <%= form_with url: questions_path, method: :get do |f| %>
+       <div class="mb-3">
+         <%= f.collection_select :tag_ids,
+                                 [],
+                                 :id,
+                                 :title,
+                                 {selected: params[:tag_ids]},
+                                 multiple: true,
+                                 required: true,
+                                 class: 'js-multiple-select w-100',
+                                 data: {'ajax-url': '/api/tags'} %>
+       </div>
+      <%= f.submit t('.button.submit'), class: 'btn btn-primary' %>
+    <% end %>
+  </section>
+
   <%= render @questions %>
 
   <div class="mt-3">

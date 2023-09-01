@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserBulkService < ApplicationService
   attr_reader :archive
 
@@ -5,7 +7,7 @@ class UserBulkService < ApplicationService
   # в переменную @archive записываем archive_param.tempfile
   # tempfile - это метод который позволяет получить ссылку на загруженный файл
   def initialize(archive_param)
-     @archive = archive_param.tempfile
+    @archive = archive_param.tempfile
   end
 
   def call

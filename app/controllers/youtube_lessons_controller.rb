@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class YoutubeLessonsController < ApplicationController
   before_action :set_youtube_lessons!
   def index

@@ -26,7 +26,6 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 
-
   # метод для запоминания пользователя. Генерирует токен на основе которого делается хеш.
   # Записывает данный токен в БД
   def remember_me
@@ -59,7 +58,6 @@ class User < ApplicationRecord
     hash = Digest::MD5.hexdigest email.strip.downcase
     self.gravatar_hash = hash
   end
-
 
   # метод генерирует хеш на основе строки переданной в параметрах метода
   # честно спизжен из видосов, а в видосе тоже от куда-то спизжен

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-lang="<%= I18n.locale %>">
   <head>
     <title><%= full_title(yield(:page_title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body data-lang="<%= I18n.locale %>">
     <%= yield :main_menu %>
 
     <main>

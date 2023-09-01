@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'axlsx'
 wb = xlsx_package.workbook
 s = wb.styles
@@ -5,12 +7,12 @@ highlight_cell = s.add_style bg_color: 'EFC376'
 right_cell = s.add_style border: Axlsx::STYLE_THIN_BORDER, alignment: { horizontal: :right }
 date_cell = s.add_style format_code: 'dd-mm-yyyy'
 
-wb.add_worksheet(name: "Youtube_Lesson") do |sheet|
-    sheet.add_row(["ID", lesson.id], style: [nil, highlight_cell])
-    sheet.add_row(["Number", lesson.number], style: [nil, right_cell])
-    sheet.add_row(["Name", lesson.name], style: [nil, right_cell])
-    sheet.add_row(["Link", lesson.link], style: [nil, right_cell])
-    sheet.add_row(["Description", lesson.description], style: [nil, right_cell])
-    sheet.add_row(["Created at", lesson.created_at], style: [nil, date_cell])
-    sheet.add_row(["Updated at", lesson.updated_at], style: [nil, date_cell])
+wb.add_worksheet(name: 'Youtube_Lesson') do |sheet|
+  sheet.add_row(['ID', lesson.id], style: [nil, highlight_cell])
+  sheet.add_row(['Number', lesson.number], style: [nil, right_cell])
+  sheet.add_row(['Name', lesson.name], style: [nil, right_cell])
+  sheet.add_row(['Link', lesson.link], style: [nil, right_cell])
+  sheet.add_row(['Description', lesson.description], style: [nil, right_cell])
+  sheet.add_row(['Created at', lesson.created_at], style: [nil, date_cell])
+  sheet.add_row(['Updated at', lesson.updated_at], style: [nil, date_cell])
 end

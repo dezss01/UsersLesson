@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswersController < ApplicationController
   include QuestionsAnswers
 
@@ -35,7 +37,6 @@ class AnswersController < ApplicationController
     flash[:success] = 'Answer deleted!'
     redirect_to question_path(@question)
   end
-
 
   private
 

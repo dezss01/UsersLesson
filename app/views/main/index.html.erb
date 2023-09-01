@@ -188,15 +188,76 @@
             </li>
           </ol>
         </li>
-    </ol>
-    <li class="list-group-item">
-      Полиморфические отношения или создание комментариев
-      <ol class="list-group list-group-numbered">
         <li class="list-group-item">
-          В консоли генерируем модель командой
-          <em>rails g model Comment body commentable:references{polymorphic} user:belongs_to</em><br>
-          После генерации модели делаем миграцию<br>
-          В миграции создаются 2 поля
+        Полиморфические отношения или создание комментариев
+          <ol class="list-group list-group-numbered">
+            <li class="list-group-item">
+              В консоли генерируем модель командой
+              <em>rails g model Comment body commentable:references{polymorphic} user:belongs_to</em><br>
+              После генерации модели делаем миграцию<br>
+              В миграции создаются 2 поля
+            </li>
+            <li class="list-group-item">
+              Создаем консерн Commentable который выглядит так: <br>
+              <pre>
+                <code>
+                  # Этот консерн будет подключать к любой модели модель комментариев
+                  # и тогда фактически у этой модели будет много комментариев и это виртуальное отношение
+                  # будет называться commentable
+                  module Commentable
+                    extend ActiveSupport::Concern
+
+                    included do
+                      has_many :comments, as: :commentable, dependent: :destroy
+                    end
+                  end
+                </code>
+              </pre>
+              <br>
+              и подключаем его к тем моделям которым будут доступны комментарии, а именно к вопросу и ответу.<br>
+              данный код
+            </li>
+            <li class="list-group-item">
+              <p>тут я просрал записи и мало что понял в полиморфических отношениях в БД</p>
+            </li>
+          </ol>
+        <li class="list-group-item">
+          Отношение многие-ко-многим
+          <ol class="list-group list-group-numbered">
+            <li class="list-group-item">
+              создаем модель тегов <em>rails g model Tag title</em>
+            </li>
+            <li class="list-group-item">
+              создаем таблицу в которой будем прописывать взаимоотношения между моделями.
+              <em>rails g model QuestionTag question:belongs_to tag:belongs_to</em><br>
+            </li>
+            <li class="list-group-item">
+              <p>
+                В миграцию создающую QuestionTag добавляем этот код
+              </p>
+              <pre>
+                <code>
+                  # эта строка позволит не появиться двум записям с одинаковыми question_id и tag_id
+                  # потому что нет смысла добавлять к одному вопросу кучу одинаковых тегов
+                  add_index :question_tags, %i[question_id tag_id], unique: true
+                </code>
+              </pre>
+            </li>
+            <li class="list-group-item">
+              В модель Tag записываем отношение <em>has_many :question_tags, depended::destroy</em>
+              и <em>has_many :questions, through: :question_tags</em>. <br>
+              второй записью мы устанавливаем связь между таблицами question и tag<br>
+              и такое же отношение нужно прописать для вопроса
+            </li>
+            <li class="list-group-item">
+              В форму создания вопроса добавим пару строк отвечающих за добавление тегов к вопросам
+              <pre>
+                <code>
+
+                </code>
+              </pre>
+            </li>
+          </ol>
         </li>
       </ol>
   </ul>
